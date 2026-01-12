@@ -1,4 +1,16 @@
 import streamlit as st
+
+# Emergency Debug Check
+if st.sidebar.button("System Health Check"):
+    key = st.secrets.get("OPENAI_API_KEY")
+    if not key:
+        st.sidebar.error("❌ Secrets not found! Check your Advanced Settings.")
+    elif not key.startswith("sk-"):
+        st.sidebar.error("❌ Key format is wrong! It must start with 'sk-'.")
+    else:
+        st.sidebar.success(f"✅ Key loaded! (Length: {len(key)})")
+
+import streamlit as st
 from arnav_ai_chatbot import ArnavAI
 
 st.set_page_config(page_title="Arnav AI 3.0", page_icon="🚀")
